@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Cart</title>
+  </head>
+  <body>
+    <center>
+      <h1>Cart</h1>
+      {% if order %}
+      <h2>Order ID: {{ order.id }}</h2>
+      {% if items %}
+      <table border="1px">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>Pet Name</th>
+            <th>quanity</th>
+            <th>Price</th>
+            <th>total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td>
+              <img
+                src="/static/media/{{item.product.image}}"
+                alt="No Image"
+                style="width: 100%"
+              />
+            </td>
+
+            <td>{{ item.product.name }}</td>
+
+            <td>{{item.quantity}}</td>
+            <td>{{item.product.price}}</td>
+            <td></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No items in the cart</p>
+      {% endif %} {% else %}
+      <p>No active order found</p>
+      {% endif %}
+    </center>
+  </body>
+</html>
